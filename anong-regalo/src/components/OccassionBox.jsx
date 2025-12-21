@@ -3,7 +3,7 @@ import React from 'react'
 const OccassionBox = ({ background, title, url }) => {
 
     const handleOnClick = () => {
-        alert("hello" + url);
+        alert(`${title} to, bukas ko na lagyan function hihi`);
     }
   return (
     <div
