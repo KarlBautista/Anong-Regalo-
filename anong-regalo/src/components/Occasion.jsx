@@ -13,8 +13,8 @@ const Occasion = () => {
     <section className='w-full min-h-screen flex justify-center'>
         <div className='w-full max-w-6xl p-5 flex flex-col'>
             
-            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl lg:text-3xl m-5 whitespace-nowrap'>Anong Occasion?</h1>
-            <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-3'>
+            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Anong Occasion?</h1>
+            <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3'>
             <OccassionBox title="Christmas" background={Christmas} url={'test lang muna'}/>
             <OccassionBox title="Birthday" background={Birthday} url={'test lang muna'}/>
             <OccassionBox title="Anniversary" background={Anniverssary} url={'test lang muna'}/>
