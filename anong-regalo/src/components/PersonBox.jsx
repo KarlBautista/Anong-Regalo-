@@ -1,16 +1,13 @@
 import React from 'react'
-import useUser from '../store/userInformation';
-import { useNavigate } from 'react-router-dom'
-const OccassionBox = ({ background, title, url }) => {
-    const { setOccassion } = useUser();
-    const navigate = useNavigate();
+
+const PersonBox = ({ background, title, url }) => {
     const handleOnClick = () => {
-      setOccassion(title, background);
+      setOccassion(title);
       navigate("/person");
       console.log("nagana naman")
     }
   return (
-    <div
+   <div
       className='relative w-full aspect-square bg-black bg-cover bg-center overflow-hidden cursor-pointer rounded-lg'
       style={{ backgroundImage: `url(${background})` }}
       onClick={handleOnClick}
@@ -23,4 +20,4 @@ const OccassionBox = ({ background, title, url }) => {
   )
 }
 
-export default OccassionBox
+export default PersonBox

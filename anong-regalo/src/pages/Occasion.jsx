@@ -1,5 +1,5 @@
 import React from 'react'
-import OccassionBox from './OccassionBox'
+import OccassionBox from '../components/OccassionBox'
 import Christmas from '../assets/christmas.webp'
 import Birthday from '../assets/birthday.webp'
 import Anniverssary from '../assets/anniversarry.jpg'
