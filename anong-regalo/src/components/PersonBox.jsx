@@ -1,10 +1,12 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import useUser from '../store/userInformation';
+import { useNavigate } from 'react-router-dom'
 const PersonBox = ({ background, title, url }) => {
+    const { setPerson } = useUser();
+    const navigate = useNavigate();
     const handleOnClick = () => {
-      setOccassion(title);
-      navigate("/person");
-      console.log("nagana naman")
+      setPerson(title, background);
+      navigate(`/details/${title}`);
     }
   return (
    <div
