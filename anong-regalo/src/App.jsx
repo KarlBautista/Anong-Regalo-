@@ -7,6 +7,7 @@ import Steps from './components/Steps'
 import Footer from './components/Footer'
 import { Routes, Route } from 'react-router-dom'
 import Person from './pages/Person'
+import Details from './pages/Details'
 function App() {
   return (
     <div className='w-full flex flex-col'>
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Occasion />}/>
           <Route path='/person' element={<Person />}/>
+          <Route path='/details' element={<Details />}/>
         </Routes>
       <Footer />
     </div>
