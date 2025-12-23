@@ -26,7 +26,7 @@ const Occasion = () => {
               type='button'
               aria-label='Back'
               onClick={() => handleBack()}
-              className='w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#D32F2F] text-white flex items-center justify-center text-xl leading-none cursor-pointer'
+              className='w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#D32F2F] text-white flex items-center justify-center text-xl leading-none cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D32F2F]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
             >
               <span aria-hidden='true' className='text-3xl'>
                 {`<`}

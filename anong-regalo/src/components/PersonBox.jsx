@@ -35,11 +35,11 @@ const PersonBox = ({ background, title, url }) => {
   return (
     <>
       <div
-        className='relative w-full aspect-square bg-black bg-cover bg-center overflow-hidden cursor-pointer rounded-lg'
+        className='group relative w-full aspect-square bg-black bg-cover bg-center overflow-hidden cursor-pointer rounded-lg transition-transform duration-200 hover:scale-[1.01] hover:ring-2 hover:ring-[#D32F2F]/60 active:scale-[0.99]'
         style={{ backgroundImage: `url(${background})` }}
         onClick={handleOnClick}
       >
-        <div className='absolute inset-0 bg-black/40' />
+        <div className='absolute inset-0 bg-black/40 transition-colors duration-200 group-hover:bg-black/50' />
         <h2 className='absolute inset-0 flex items-center justify-center text-white text-center text-xl md:text-2xl lg:text-3xl px-3'>
           {title}
         </h2>
@@ -66,7 +66,7 @@ const PersonBox = ({ background, title, url }) => {
                 if (e.key === 'Escape') handleClose()
               }}
               placeholder={t(lang, 'other.placeholderPerson')}
-              className='w-full border px-4 py-2 rounded-md border-gray-400'
+              className='w-full border px-4 py-2 rounded-md border-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D32F2F]/60'
               type='text'
             />
 
@@ -74,14 +74,14 @@ const PersonBox = ({ background, title, url }) => {
               <button
                 type='button'
                 onClick={handleClose}
-                className='px-4 py-2 rounded-md border border-gray-300 text-gray-700 cursor-pointer'
+                className='px-4 py-2 rounded-md border border-gray-300 text-gray-700 cursor-pointer transition-colors duration-200 hover:bg-gray-50'
               >
                 {t(lang, 'other.cancel')}
               </button>
               <button
                 type='button'
                 onClick={handleConfirm}
-                className='px-4 py-2 rounded-md bg-[#D32F2F] text-white cursor-pointer'
+                className='px-4 py-2 rounded-md bg-[#D32F2F] text-white cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80'
               >
                 {t(lang, 'other.confirm')}
               </button>

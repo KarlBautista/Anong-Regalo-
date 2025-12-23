@@ -105,7 +105,7 @@ const Details = () => {
               type='button'
               aria-label='Back'
               onClick={() => handleBack()}
-              className='w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#D32F2F] text-white flex items-center justify-center text-xl leading-none cursor-pointer'
+                            className='w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#D32F2F] text-white flex items-center justify-center text-xl leading-none cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D32F2F]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
             >
               <span aria-hidden='true' className='text-3xl'>
                 {`<`}
@@ -209,13 +209,39 @@ const Details = () => {
                   <div className='flex flex-col gap-1'>
                                         <label htmlFor="">{t(lang, 'details.priceRange')} <span className='text-gray-500'>{t(lang, 'details.optional')}</span></label>
                     <div className='grid grid-cols-2 sm:grid-cols-4 gap-2'>
-                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "low" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('low')}>Low</button>
-                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "mid" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('mid')}>Mid</button>
-                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "high" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('high')}>High</button>
-                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "luxury" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('luxury')}>Luxury</button>
+                                                <button
+                                                    type='button'
+                                                    className={`border px-4 py-2 rounded-lg cursor-pointer text-center transition-colors duration-200 hover:border-[#D32F2F] hover:text-[#D32F2F] hover:bg-[#D32F2F]/10 active:opacity-80 ${form.priceRange === "low" ? `bg-[#D32F2F] text-white hover:opacity-90` : ''}`}
+                                                    onClick={() => handlePriceRange('low')}
+                                                >
+                                                    Low
+                                                </button>
+                                                <button
+                                                    type='button'
+                                                    className={`border px-4 py-2 rounded-lg cursor-pointer text-center transition-colors duration-200 hover:border-[#D32F2F] hover:text-[#D32F2F] hover:bg-[#D32F2F]/10 active:opacity-80 ${form.priceRange === "mid" ? `bg-[#D32F2F] text-white hover:opacity-90` : ''}`}
+                                                    onClick={() => handlePriceRange('mid')}
+                                                >
+                                                    Mid
+                                                </button>
+                                                <button
+                                                    type='button'
+                                                    className={`border px-4 py-2 rounded-lg cursor-pointer text-center transition-colors duration-200 hover:border-[#D32F2F] hover:text-[#D32F2F] hover:bg-[#D32F2F]/10 active:opacity-80 ${form.priceRange === "high" ? `bg-[#D32F2F] text-white hover:opacity-90` : ''}`}
+                                                    onClick={() => handlePriceRange('high')}
+                                                >
+                                                    High
+                                                </button>
+                                                <button
+                                                    type='button'
+                                                    className={`border px-4 py-2 rounded-lg cursor-pointer text-center transition-colors duration-200 hover:border-[#D32F2F] hover:text-[#D32F2F] hover:bg-[#D32F2F]/10 active:opacity-80 ${form.priceRange === "luxury" ? `bg-[#D32F2F] text-white hover:opacity-90` : ''}`}
+                                                    onClick={() => handlePriceRange('luxury')}
+                                                >
+                                                    Luxury
+                                                </button>
                     </div>
                 </div> 
-                <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer'>{t(lang, 'details.submit')}</button>                     
+                                <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80'>
+                                    {t(lang, 'details.submit')}
+                                </button>                     
             </form>
         </div>
   

@@ -48,14 +48,14 @@ const Home = () => {
               <button
                 type='button'
                 onClick={() => navigate('/occasion')}
-                className='w-full sm:w-auto px-6 py-3 rounded-md bg-[#D32F2F] text-white cursor-pointer'
+                className='w-full sm:w-auto px-6 py-3 rounded-md bg-[#D32F2F] text-white cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D32F2F]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
               >
                 {copy.primary}
               </button>
               <button
                 type='button'
                 onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
-                className='w-full sm:w-auto px-6 py-3 rounded-md border border-[#D32F2F] text-[#D32F2F] cursor-pointer'
+                className='w-full sm:w-auto px-6 py-3 rounded-md border border-[#D32F2F] text-[#D32F2F] cursor-pointer transition-colors duration-200 hover:bg-[#D32F2F]/10 active:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D32F2F]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
               >
                 {copy.secondary}
               </button>

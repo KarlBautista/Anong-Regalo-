@@ -24,8 +24,10 @@ const IdeasBox = ({ idea }) => {
         {t(lang, 'ideasBox.estimated', { price: idea.estimated_price_php })}
       </div>
 
-      <div className="flex-none w-full bg-[#D32F2F] flex justify-center items-center px-4 py-3 cursor-pointer"
-      onClick={() => handleSearch()}>
+      <div
+        className="flex-none w-full bg-[#D32F2F] flex justify-center items-center px-4 py-3 cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80"
+        onClick={() => handleSearch()}
+      >
         <h1 className="text-white text-sm md:text-lg text-center">{t(lang, 'ideasBox.cta')}</h1>
       </div>
     </div>
