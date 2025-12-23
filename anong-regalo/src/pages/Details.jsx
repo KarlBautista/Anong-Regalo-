@@ -61,7 +61,7 @@ const Details = () => {
   <section className='w-full min-h-screen flex justify-center'>
         <div className='w-full max-w-6xl p-5 flex flex-col  items-center'>
             <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Magdagdag ng details</h1>
-            <form onSubmit={handleOnSubmit} className='w-[50%] h-auto  border-2 border-[#D32F2F] rounded-lg p-5 flex flex-col gap-5'>
+            <form onSubmit={handleOnSubmit} className='w-full md:w-[50%] h-auto  border-2 border-[#D32F2F] rounded-lg p-5 flex flex-col gap-5'>
                 <div className='flex flex-col gap-1'>
                     <label htmlFor="">{`Your ${title}'s Age `}<span className='text-gray-500'>(Optional)</span></label>
                     <div className='flex gap-3 items-center'>
