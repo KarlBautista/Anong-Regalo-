@@ -3,6 +3,10 @@ import { GoogleGenAI } from "@google/genai"
 export async function getGiftRecommendations(formData) {
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY
 
+  if (!API_KEY) {
+    throw new Error('Missing VITE_GEMINI_API_KEY. Add it to your Vite environment and restart the dev server.')
+  }
+
   const refinement = typeof formData?.refinement === 'string' ? formData.refinement.trim() : ''
 
   const prompt = `

@@ -26,6 +26,7 @@ const Details = () => {
         lang,
         setLastFormData,
         setRecommendationsError,
+        recommendationsError,
     } = useUser(); 
    
     const { title } = useParams();
@@ -54,6 +55,10 @@ const Details = () => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
+        if (!occasion || !person) {
+            setRecommendationsError('Missing occasion/person. Please go back and select them again.')
+            return
+        }
         setLoading(true);
         try {
             const formData = {
@@ -75,6 +80,8 @@ const Details = () => {
                 setIdeas(response);
                 setRecommendationsError(null)
                 navigate('/ideas');
+            } else {
+                setRecommendationsError('No recommendations returned. Please try again.')
             }
             
        
@@ -239,7 +246,12 @@ const Details = () => {
                                                 </button>
                     </div>
                 </div> 
-                                <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80'>
+                                                                {recommendationsError ? (
+                                                                    <p className='text-sm text-center text-[#D32F2F]'>
+                                                                        {recommendationsError}
+                                                                    </p>
+                                                                ) : null}
+                                                                <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer transition-opacity duration-200 hover:opacity-90 active:opacity-80'>
                                     {t(lang, 'details.submit')}
                                 </button>                     
             </form>
