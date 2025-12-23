@@ -10,9 +10,10 @@ import Boyfriend from '../assets/boyfriend.jpg'
 import Friend from '../assets/friend.avif'
 import Other from '../assets/other.webp'
 import useUser from '../store/userInformation'
+import { t } from '../i18n/t'
 const Person = () => {
   const navigate = useNavigate();
-  const { clearOccasion } = useUser();
+  const { clearOccasion, lang } = useUser();
   const handleBack = () => {
     clearOccasion();
     navigate(-1);
@@ -32,7 +33,7 @@ const Person = () => {
               </span>
             </button>
           </div>
-            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Sino ang pagbibigyan mo?</h1>
+            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5'>{t(lang, 'person.title')}</h1>
             <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3'>
             <PersonBox background={Father} title="Father" url={"Test lang muna"}/>
             <PersonBox background={Mother} title="Mother" url={"Test lang muna"}/>

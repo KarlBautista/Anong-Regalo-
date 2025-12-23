@@ -9,17 +9,23 @@ import { Routes, Route } from 'react-router-dom'
 import Person from './pages/Person'
 import Details from './pages/Details'
 import Ideas from './pages/Ideas'
+import ScrollToTop from './components/ScrollToTop'
+import Home from './pages/Home'
 function App() {
   return (
-    <div className='w-full flex flex-col'>
+    <div className='w-full min-h-screen flex flex-col'>
       <Header />
       <Steps />
-        <Routes>
-          <Route path='/' element={<Occasion />}/>
-          <Route path='/person' element={<Person />}/>
-          <Route path='/details/:title' element={<Details />}/>
-          <Route path="/ideas" element={<Ideas />}/>
-        </Routes>
+      <main className='flex-1'>
+        <ScrollToTop />
+          <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/occasion' element={<Occasion />}/>
+            <Route path='/person' element={<Person />}/>
+            <Route path='/details/:title' element={<Details />}/>
+            <Route path="/ideas" element={<Ideas />}/>
+          </Routes>
+      </main>
       <Footer />
     </div>
   )

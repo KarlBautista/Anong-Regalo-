@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { getGiftRecommendations } from '../components/GetGiftRecommedations';
 import Loading from '../components/Loading'
 import useUser from '../store/userInformation';
+import { t } from '../i18n/t'
 const Details = () => {
     const [form, setForm] = useState({
         age: '',
@@ -13,7 +14,19 @@ const Details = () => {
         priceRange: '',
     });
    
-    const { occasion, person, setIdeas, ideas, setLoading, loading, setFormIsComplete, clearPerson} = useUser(); 
+    const {
+        occasion,
+        person,
+        setIdeas,
+        ideas,
+        setLoading,
+        loading,
+        setFormIsComplete,
+        clearPerson,
+        lang,
+        setLastFormData,
+        setRecommendationsError,
+    } = useUser(); 
    
     const { title } = useParams();
     const navigate = useNavigate();
@@ -52,11 +65,15 @@ const Details = () => {
                 giftStyle: form.giftStyle,
                 priceRange: form.priceRange,
             }
+
+            setLastFormData(formData)
+            setRecommendationsError(null)
             setFormIsComplete(true);
             
             const response = await getGiftRecommendations(formData);
             if (Array.isArray(response) && response.length > 0) {
                 setIdeas(response);
+                setRecommendationsError(null)
                 navigate('/ideas');
             }
             
@@ -64,6 +81,7 @@ const Details = () => {
            
         } catch (err) {
             console.error(`Something went wrong getting data from GEMINI: ${err.message}`);
+            setRecommendationsError(err?.message ? String(err.message) : 'Failed to get recommendations')
             return;
         } finally {
             setLoading(false);
@@ -80,7 +98,7 @@ const Details = () => {
   }
 
   return (
-  <section className='w-full min-h-screen flex justify-center'>
+  <section className='w-full md:min-h-screen flex justify-center'>
         <div className='w-full max-w-6xl p-5 flex flex-col  items-center'>
               <div className='w-full flex items-center'>
             <button
@@ -94,10 +112,10 @@ const Details = () => {
               </span>
             </button>
           </div>
-            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5'>Magdagdag ng details</h1>
+            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5'>{t(lang, 'details.title')}</h1>
             <form onSubmit={handleOnSubmit} className='w-full max-w-xl md:max-w-none md:w-[50%] h-auto border-2 border-[#D32F2F] rounded-lg p-4 sm:p-5 flex flex-col gap-5'>
                 <div className='flex flex-col gap-1'>
-                    <label htmlFor="">{`Your ${title}'s Age `}<span className='text-gray-500'>(Optional)</span></label>
+                    <label htmlFor="">{t(lang, 'details.ageLabel', { title })} <span className='text-gray-500'>{t(lang, 'details.optional')}</span></label>
                     <div className='flex flex-col sm:flex-row gap-2 sm:gap-3 sm:items-center'>
                                              <input
                                                  type="text"
@@ -107,12 +125,12 @@ const Details = () => {
                                                  className='border w-full sm:w-[80%] px-4 py-2 rounded-sm border-gray-500'
                                                  placeholder='Ex. 18'
                                              />
-                                             <span>Years Old</span>
+                                             <span>{t(lang, 'details.yearsOld')}</span>
                     </div>
                 </div>
 
                 <div className='flex flex-col gap-1'>
-                    <label htmlFor="">{`Your ${title}'s Taste and Interests `}<span className='text-gray-500'>(Optional)</span></label>
+                    <label htmlFor="">{t(lang, 'details.tasteLabel', { title })} <span className='text-gray-500'>{t(lang, 'details.optional')}</span></label>
                                         <div className='flex flex-col gap-3'>
                                             <div className='flex flex-wrap gap-3 items-center'>
                                                 <input
@@ -161,7 +179,7 @@ const Details = () => {
                                         </div>
                 </div>
                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="">Gift Category <span className='text-gray-500'>(Optional)</span></label>
+                          <label htmlFor="">{t(lang, 'details.giftCategory')} <span className='text-gray-500'>{t(lang, 'details.optional')}</span></label>
                     <div className='flex gap-3 items-center'>
                        <input
                          type="text"
@@ -175,7 +193,7 @@ const Details = () => {
                 </div>   
 
                 <div className='flex flex-col gap-1'>
-                    <label htmlFor="">Gift Style <span className='text-gray-500'>(Optional)</span></label>
+                    <label htmlFor="">{t(lang, 'details.giftStyle')} <span className='text-gray-500'>{t(lang, 'details.optional')}</span></label>
                     <div className='flex gap-3 items-center'>
                                              <input
                                                  type="text"
@@ -189,7 +207,7 @@ const Details = () => {
                 </div>    
 
                   <div className='flex flex-col gap-1'>
-                    <label htmlFor="">Price Range <span className='text-gray-500'>(Optional)</span></label>
+                                        <label htmlFor="">{t(lang, 'details.priceRange')} <span className='text-gray-500'>{t(lang, 'details.optional')}</span></label>
                     <div className='grid grid-cols-2 sm:grid-cols-4 gap-2'>
                         <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "low" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('low')}>Low</button>
                         <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "mid" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('mid')}>Mid</button>
@@ -197,7 +215,7 @@ const Details = () => {
                         <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "luxury" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('luxury')}>Luxury</button>
                     </div>
                 </div> 
-                <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer'>Hanapin ang perfect na regalo</button>                     
+                <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer'>{t(lang, 'details.submit')}</button>                     
             </form>
         </div>
   

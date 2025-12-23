@@ -3,6 +3,8 @@ import { GoogleGenAI } from "@google/genai"
 export async function getGiftRecommendations(formData) {
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY
 
+  const refinement = typeof formData?.refinement === 'string' ? formData.refinement.trim() : ''
+
   const prompt = `
   You are a gift recommendation assistant.
 
@@ -30,6 +32,8 @@ export async function getGiftRecommendations(formData) {
   - Category: ${formData.giftCategory}
   - Gift Style: ${formData.giftStyle}
   - Price Range: ${formData.priceRange}
+
+  Additional user instruction (apply if present): ${refinement || 'N/A'}
   `
 
   const getGift = new GoogleGenAI({ apiKey: API_KEY })

@@ -8,11 +8,15 @@ import MothersDay from '../assets/mothers-day.jpg'
 import Valentines from '../assets/valentines.png'
 import Wedding from '../assets/wedding.webp'
 import Graduation from '../assets/graduation.avif'
+import Others from "../assets/others.jpg"
 import { useNavigate } from 'react-router-dom'
+import useUser from '../store/userInformation'
+import { t } from '../i18n/t'
 const Occasion = () => {
   const navigate = useNavigate();
+  const { lang } = useUser()
   const handleBack = () => {
-    
+    navigate(-1)
   }
   return (
     <section className='w-full min-h-screen flex justify-center'>
@@ -29,17 +33,17 @@ const Occasion = () => {
               </span>
             </button>
           </div>
-            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Anong Occasion?</h1>
+            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5'>{t(lang, 'occasion.title')}</h1>
             <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3'>
-            <OccassionBox title="Christmas" background={Christmas} url={'test lang muna'}/>
-            <OccassionBox title="Birthday" background={Birthday} url={'test lang muna'}/>
-            <OccassionBox title="Anniversary" background={Anniverssary} url={'test lang muna'}/>
-            <OccassionBox title="Valentines" background={Valentines} url={'test lang muna'}/>
-            <OccassionBox title="Father's Day" background={FathersDay} url={'test lang muna'}/>
-            <OccassionBox title="Mother's Day" background={MothersDay} url={'test lang muna'}/>
-            <OccassionBox title="Wedding" background={Wedding} url={'test lang muna'}/>
-            <OccassionBox title="Graduation" background={Graduation} url={'test lang muna'}/>
-               
+            <OccassionBox title="Christmas" background={Christmas}/>
+            <OccassionBox title="Birthday" background={Birthday}/>
+            <OccassionBox title="Anniversary" background={Anniverssary}/>
+            <OccassionBox title="Valentines" background={Valentines}/>
+            <OccassionBox title="Father's Day" background={FathersDay} />
+            <OccassionBox title="Mother's Day" background={MothersDay} />
+            <OccassionBox title="Wedding" background={Wedding} />
+            <OccassionBox title="Graduation" background={Graduation}/>
+            <OccassionBox title="Others" background={Others}/>
             </div>
         </div>
       

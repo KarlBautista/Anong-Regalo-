@@ -1,6 +1,9 @@
 import React from 'react'
+import useUser from '../store/userInformation'
+import { t } from '../i18n/t'
 
 const IdeasBox = ({ idea }) => {
+  const { lang } = useUser()
 
     const handleSearch = () => {
           const url = `https://shopee.ph/search?keyword=${encodeURIComponent(idea.search_query)}`;
@@ -18,12 +21,12 @@ const IdeasBox = ({ idea }) => {
       </div>
 
       <div className='flex-1 text-center text-sm md:text-base leading-relaxed text-[#d32f2f]'>
-        {`Estimated Price Range: ${idea.estimated_price_php} Pesos`}
+        {t(lang, 'ideasBox.estimated', { price: idea.estimated_price_php })}
       </div>
 
       <div className="flex-none w-full bg-[#D32F2F] flex justify-center items-center px-4 py-3 cursor-pointer"
       onClick={() => handleSearch()}>
-        <h1 className="text-white text-sm md:text-lg text-center">{'> Tingnan ang Image at Options sa Pagbili'}</h1>
+        <h1 className="text-white text-sm md:text-lg text-center">{t(lang, 'ideasBox.cta')}</h1>
       </div>
     </div>
 
