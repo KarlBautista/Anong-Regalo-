@@ -39,9 +39,22 @@ export async function getGiftRecommendations(formData) {
     contents: prompt
   })
 
- 
- 
+  const part = response?.candidates?.[0]?.content?.parts?.[0]
+  const text = typeof part === 'string' ? part : part?.text
+  if (!text) {
+    throw new Error('Gemini returned empty content')
+  }
 
-  console.log(response)
-  return 0;
+  const cleaned = text
+    .trim()
+    .replace(/^```(?:json)?\s*/i, '')
+    .replace(/\s*```$/i, '')
+    .trim()
+
+  const parsed = JSON.parse(cleaned)
+  if (!Array.isArray(parsed)) {
+    throw new Error('Gemini response was not a JSON array')
+  }
+
+  return parsed
 }

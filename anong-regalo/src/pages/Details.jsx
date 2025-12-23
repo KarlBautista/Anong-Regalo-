@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getGiftRecommendations } from '../components/GetGiftRecommedations';
+import Loading from '../components/Loading'
 import useUser from '../store/userInformation';
 const Details = () => {
     const [form, setForm] = useState({
@@ -10,9 +12,11 @@ const Details = () => {
         giftStyle: '',
         priceRange: '',
     });
-    const { occasion, person } = useUser(); 
+   
+    const { occasion, person, setIdeas, ideas, setLoading, loading } = useUser(); 
    
     const { title } = useParams();
+    const navigate = useNavigate();
     
 
     const addInterestField = () => {
@@ -37,6 +41,7 @@ const Details = () => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const formData = {
                 occasion: occasion,
@@ -48,14 +53,25 @@ const Details = () => {
                 priceRange: form.priceRange,
             }
 
-            console.log("ito form natin: ", formData)
             const response = await getGiftRecommendations(formData);
-            console.log("ito na mga data:" + response);
+            if (Array.isArray(response) && response.length > 0) {
+                setIdeas(response);
+                navigate('/ideas');
+            }
+            
+       
+           
         } catch (err) {
             console.error(`Something went wrong getting data from GEMINI: ${err.message}`);
             return;
+        } finally {
+            setLoading(false);
         }
     }
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
   <section className='w-full min-h-screen flex justify-center'>
