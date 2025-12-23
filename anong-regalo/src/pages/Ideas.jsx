@@ -66,7 +66,7 @@ const Ideas = () => {
     <div className='w-full min-h-screen px-4 py-6'>
       
       <div className='w-full max-w-4xl mx-auto'>
-          <div className='w-full flex items-center'>
+          <div className='w-full flex items-center mb-5'>
             <button
               type='button'
               aria-label='Back'
