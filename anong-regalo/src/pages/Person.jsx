@@ -1,5 +1,6 @@
 import React from 'react'
 import PersonBox from '../components/PersonBox'
+import { useNavigate } from 'react-router-dom'
 import Father from '../assets/father.jpg'
 import Mother from '../assets/mother.jpg'
 import Daughter from '../assets/daugther.jpg'
@@ -8,11 +9,29 @@ import Girlfriend from '../assets/girlfriend.jpg'
 import Boyfriend from '../assets/boyfriend.jpg'
 import Friend from '../assets/friend.avif'
 import Other from '../assets/other.webp'
+import useUser from '../store/userInformation'
 const Person = () => {
- 
+  const navigate = useNavigate();
+  const { clearOccasion } = useUser();
+  const handleBack = () => {
+    clearOccasion();
+    navigate(-1);
+  }
   return (
     <section className='w-full min-h-screen flex justify-center'>
         <div className='w-full max-w-6xl p-5 flex flex-col'>
+          <div className='w-full flex items-center'>
+            <button
+              type='button'
+              aria-label='Back'
+              onClick={() => handleBack()}
+              className='w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#D32F2F] text-white flex items-center justify-center text-xl leading-none cursor-pointer'
+            >
+              <span aria-hidden='true' className='text-3xl'>
+                {`<`}
+              </span>
+            </button>
+          </div>
             <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Sino ang pagbibigyan mo?</h1>
             <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3'>
             <PersonBox background={Father} title="Father" url={"Test lang muna"}/>

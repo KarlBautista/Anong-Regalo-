@@ -13,7 +13,7 @@ const Details = () => {
         priceRange: '',
     });
    
-    const { occasion, person, setIdeas, ideas, setLoading, loading } = useUser(); 
+    const { occasion, person, setIdeas, ideas, setLoading, loading, setFormIsComplete, clearPerson} = useUser(); 
    
     const { title } = useParams();
     const navigate = useNavigate();
@@ -52,7 +52,8 @@ const Details = () => {
                 giftStyle: form.giftStyle,
                 priceRange: form.priceRange,
             }
-
+            setFormIsComplete(true);
+            
             const response = await getGiftRecommendations(formData);
             if (Array.isArray(response) && response.length > 0) {
                 setIdeas(response);
@@ -72,10 +73,27 @@ const Details = () => {
   if (loading) {
     return <Loading />
   }
+  
+  const handleBack = () => {
+    clearPerson();
+    navigate(-1)
+  }
 
   return (
   <section className='w-full min-h-screen flex justify-center'>
         <div className='w-full max-w-6xl p-5 flex flex-col  items-center'>
+              <div className='w-full flex items-center'>
+            <button
+              type='button'
+              aria-label='Back'
+              onClick={() => handleBack()}
+              className='w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#D32F2F] text-white flex items-center justify-center text-xl leading-none cursor-pointer'
+            >
+              <span aria-hidden='true' className='text-3xl'>
+                {`<`}
+              </span>
+            </button>
+          </div>
             <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Magdagdag ng details</h1>
             <form onSubmit={handleOnSubmit} className='w-full md:w-[50%] h-auto  border-2 border-[#D32F2F] rounded-lg p-5 flex flex-col gap-5'>
                 <div className='flex flex-col gap-1'>
