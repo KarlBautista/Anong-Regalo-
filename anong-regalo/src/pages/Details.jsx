@@ -94,17 +94,17 @@ const Details = () => {
               </span>
             </button>
           </div>
-            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5 whitespace-nowrap'>Magdagdag ng details</h1>
-            <form onSubmit={handleOnSubmit} className='w-full md:w-[50%] h-auto  border-2 border-[#D32F2F] rounded-lg p-5 flex flex-col gap-5'>
+            <h1 className='text-center text-[#D32F2F] text-xl md:text-2xl mb-5'>Magdagdag ng details</h1>
+            <form onSubmit={handleOnSubmit} className='w-full max-w-xl md:max-w-none md:w-[50%] h-auto border-2 border-[#D32F2F] rounded-lg p-4 sm:p-5 flex flex-col gap-5'>
                 <div className='flex flex-col gap-1'>
                     <label htmlFor="">{`Your ${title}'s Age `}<span className='text-gray-500'>(Optional)</span></label>
-                    <div className='flex gap-3 items-center'>
+                    <div className='flex flex-col sm:flex-row gap-2 sm:gap-3 sm:items-center'>
                                              <input
                                                  type="text"
                                                  name="age"
                                                  value={form.age}
                                                  onChange={handleOnChange}
-                                                 className='border w-[80%] px-4 py-2 rounded-sm border-gray-500'
+                                                 className='border w-full sm:w-[80%] px-4 py-2 rounded-sm border-gray-500'
                                                  placeholder='Ex. 18'
                                              />
                                              <span>Years Old</span>
@@ -114,10 +114,10 @@ const Details = () => {
                 <div className='flex flex-col gap-1'>
                     <label htmlFor="">{`Your ${title}'s Taste and Interests `}<span className='text-gray-500'>(Optional)</span></label>
                                         <div className='flex flex-col gap-3'>
-                                            <div className='flex gap-3 items-center'>
+                                            <div className='flex flex-wrap gap-3 items-center'>
                                                 <input
                                                     type="text"
-                                                    className='border w-full px-4 py-2 rounded-sm border-gray-500'
+                                                    className='border flex-1 min-w-[220px] px-4 py-2 rounded-sm border-gray-500'
                                                     placeholder='Ex. Instruments'
                                                     value={form.interests[0]}
                                                     onChange={(e) => updateInterest(0, e.target.value)}
@@ -190,11 +190,11 @@ const Details = () => {
 
                   <div className='flex flex-col gap-1'>
                     <label htmlFor="">Price Range <span className='text-gray-500'>(Optional)</span></label>
-                    <div className='flex justify-evenly'>
-                        <div className={`border px-10 py-2 rounded-lg cursor-pointer ${form.priceRange === "low" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('low')}>Low</div>
-                        <div className={`border px-10 py-2 rounded-lg cursor-pointer ${form.priceRange === "mid" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('mid')}>Mid</div>
-                        <div className={`border px-10 py-2 rounded-lg cursor-pointer ${form.priceRange === "high" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('high')}>High</div>
-                        <div className={`border px-10 py-2 rounded-lg cursor-pointer ${form.priceRange === "luxury" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('luxury')}>Luxury</div>
+                    <div className='grid grid-cols-2 sm:grid-cols-4 gap-2'>
+                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "low" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('low')}>Low</button>
+                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "mid" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('mid')}>Mid</button>
+                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "high" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('high')}>High</button>
+                        <button type='button' className={`border px-4 py-2 rounded-lg cursor-pointer text-center ${form.priceRange === "luxury" ? `bg-[#D32F2F] text-white` : null}`} onClick={() => handlePriceRange('luxury')}>Luxury</button>
                     </div>
                 </div> 
                 <button className='w-full h-[50px] bg-[#D32F2F] text-white rounded-md cursor-pointer'>Hanapin ang perfect na regalo</button>                     
