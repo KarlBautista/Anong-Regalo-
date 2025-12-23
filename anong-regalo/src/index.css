@@ -1,7 +1,16 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Delius&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
   box-sizing: border-box;
- font-family: "Delius", cursive;
 }
+
+html {
+  font-family: "DynaPuff", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-style: normal;
+}
+
+body {
+  font-family: inherit;
+}
+
+
